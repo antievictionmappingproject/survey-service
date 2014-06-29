@@ -1,4 +1,4 @@
-eviction-service
+survey-service
 ================
 
 Micro service for the anti eviction mapping project's eviction data.
@@ -8,7 +8,7 @@ Micro service for the anti eviction mapping project's eviction data.
 ```
 ./go boot
 ```
-Runs a local VM that you can deploy the eviction-service to.
+Runs a local VM that you can deploy the survey-service to.
 
 ```
 ./go destroy
