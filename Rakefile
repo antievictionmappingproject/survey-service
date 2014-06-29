@@ -1,3 +1,8 @@
+desc "Fetch dependencies"
+task :bundle do
+	sh "bundle install --quiet --path vendor/isolated_gems"
+end
+
 desc "Run a local VM"
 task :boot do
 	sh "vagrant up"
