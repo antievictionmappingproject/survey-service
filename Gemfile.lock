@@ -57,5 +57,6 @@ DEPENDENCIES
   activerecord
   rest_client
   rspec (~> 3.0.0)
+  pg
   sinatra
   sinatra-activerecord

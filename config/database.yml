@@ -1,6 +1,5 @@
 development:
     adapter: postgresql
-    database: surveys
-    username: <%= ENV['PG_USER'] %>
-    password: <%= ENV['PG_PASS'] %>
+    database: app-dev
+    username: user
     host: localhost
