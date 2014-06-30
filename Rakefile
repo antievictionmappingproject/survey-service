@@ -1,3 +1,6 @@
+require './app'
+require 'sinatra/activerecord/rake'
+
 desc "Fetch dependencies"
 task :bundle do
 	sh "bundle install --quiet --path vendor/isolated_gems"
