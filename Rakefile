@@ -1,9 +1,9 @@
 require './app'
 require 'sinatra/activerecord/rake'
 
-desc "Fetch dependencies"
-task :bundle do
-	sh "bundle install --quiet --path vendor/isolated_gems"
+desc "Run survey service"
+task :run do
+	ruby 'service.rb'
 end
 
 desc "Run a local VM"
