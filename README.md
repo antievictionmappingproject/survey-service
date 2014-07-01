@@ -1,9 +1,19 @@
-survey-service
-================
+survey service
+==============
 
-Micro service for the anti eviction mapping project's eviction data.
+Micro service for the anti eviction mapping project's survey data.
 
-### Usage
+## Requirements
+
+1. Postgres
+
+## Usage
+
+```
+./go run
+Run the survey service locally
+```
+
 
 ```
 ./go boot
