@@ -1,5 +1,5 @@
-require './app'
 require 'sinatra/activerecord/rake'
+require './app'
 
 desc "Run survey service"
 task :run do
