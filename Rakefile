@@ -2,12 +2,12 @@ require 'sinatra/activerecord/rake'
 require './app'
 
 desc "Start Postgres service"
-task :start_postgres
+task :start_postgres do
 	sh 'pg_ctl -D /opt/boxen/homebrew/var/postgres start'
 end
 
 desc "Stop Postgres service"
-task :stop_postgres
+task :stop_postgres do
 	sh 'pg_ctl -D /opt/boxen/homebrew/var/postgres stop -s -m fast'
 end
 
