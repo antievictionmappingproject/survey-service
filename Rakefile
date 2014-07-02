@@ -1,9 +1,23 @@
 require 'sinatra/activerecord/rake'
 require './app'
 
-desc "Run survey service"
-task :run do
+desc "Start Postgres service"
+task :start_postgres
+	sh 'pg_ctl -D /opt/boxen/homebrew/var/postgres start'
+end
+
+desc "Stop Postgres service"
+task :stop_postgres
+	sh 'pg_ctl -D /opt/boxen/homebrew/var/postgres stop -s -m fast'
+end
+
+desc "Start survey service"
+task :start do
 	ruby 'service.rb'
+end
+
+desc "Stop survey service"
+task :stop do
 end
 
 desc "Run integration tests against a locally deployed instance"
