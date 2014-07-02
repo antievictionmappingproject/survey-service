@@ -8,7 +8,7 @@ end
 
 desc "Run integration tests against a locally deployed instance"
 task :test do
-	sh "rspec specs/survey_spec.rb"
+	sh "rspec --color specs/survey_spec.rb"
 end
 
 desc "Run a local VM"
