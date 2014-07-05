@@ -10,16 +10,16 @@ Micro service for the anti eviction mapping project's survey data.
 ## Usage
 
 ```
-./go run
+./go migrate
 ```
-Runs the survey service locally
+Create database and run migrations
 
 ```
-./go boot
+./go start
 ```
-Runs a local VM that you can deploy the survey-service to
+Run the survey service locally
 
 ```
-./go destroy
+./go test
 ```
-Tears down the VM and deletes all files
+Run rspec tests for the survey service
