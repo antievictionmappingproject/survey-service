@@ -11,6 +11,10 @@ task :stop_postgres do
 	sh 'pg_ctl -D /opt/boxen/homebrew/var/postgres stop -s -m fast'
 end
 
+desc "Run migration scripts"
+task :migrate => 'db:migrate' do
+end
+
 desc "Start survey service"
 task :start do
 	ruby 'service.rb'

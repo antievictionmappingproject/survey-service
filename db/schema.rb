@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630005654) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140705193812) do
 
   create_table "models", force: true do |t|
     t.string "name"
   end
+
+  create_table "survey_responses", force: true do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "street_1"
+    t.string "street_2"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+  end
+
+  add_index "survey_responses", ["id"], name: "sqlite_autoindex_survey_responses_1", unique: true
 
 end

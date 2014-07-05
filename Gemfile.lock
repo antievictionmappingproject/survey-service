@@ -14,6 +14,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    activeuuid (0.5.0)
+      activerecord (>= 3.1)
+      uuidtools
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     daemons (1.1.9)
@@ -49,6 +52,7 @@ GEM
     sinatra-activerecord (2.0.2)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sqlite3 (1.3.9)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -57,16 +61,19 @@ GEM
     tilt (1.4.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
+    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   activerecord
+  activeuuid
   pg
   rake
   rest_client
   rspec
   sinatra
   sinatra-activerecord
+  sqlite3
   thin
