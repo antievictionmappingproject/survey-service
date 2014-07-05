@@ -1,5 +1,3 @@
-require './models/survey'
-
 class Survey
 	attr_reader :id
 	attr_reader :address
@@ -20,8 +18,8 @@ class Survey
 		new(o["data"]["id"], o["data"]["address"])
 	end
 
-	def ==(another_survey)
-		self.id == another_survey.id
-		self.address == another_survey.address
+	def ==(survey)
+		self.id == survey.id
+		self.address == survey.address
 	end
 end
