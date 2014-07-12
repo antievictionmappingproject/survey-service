@@ -5,10 +5,6 @@ survey service
 
 Micro service for the anti eviction mapping project's survey data.
 
-## Requirements
-
-1. SQLite ```brew install sqlite```
-
 ## Usage
 
 ```
