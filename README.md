@@ -1,6 +1,8 @@
 survey service
 ==============
 
+[![Build Status](https://snap-ci.com/antievictionmappingproject/survey-service/branch/master/build_image)](https://snap-ci.com/antievictionmappingproject/survey-service/branch/master)
+
 Micro service for the anti eviction mapping project's survey data.
 
 ## Requirements
