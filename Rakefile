@@ -24,8 +24,13 @@ desc "Stop survey service"
 task :stop do
 end
 
-desc "Run integration tests against a locally deployed instance"
+desc "Run unit tests"
 task :test do
+	sh "rspec --color spec"
+end
+
+desc "Run integration tests against a locally deployed instance"
+task :acceptance do
 	sh "rspec --color specs/survey_spec.rb"
 end
 
