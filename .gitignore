@@ -1,3 +1,6 @@
 .bundle
 .vagrant
 vendor
+
+db/surveys
+db/schema.rb
