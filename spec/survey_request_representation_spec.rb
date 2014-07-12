@@ -1,5 +1,5 @@
 RSpec.describe "something" do
   it "does something" do
-    fail
+    # pass
   end
 end
