@@ -8,4 +8,5 @@ gem 'sinatra-activerecord'
 gem 'activeuuid'
 gem 'rspec'
 gem 'rest_client'
-gem 'pg'
+gem 'pg', :group => :production
+gem 'sqlite3', :group => :development
