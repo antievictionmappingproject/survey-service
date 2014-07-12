@@ -2,4 +2,5 @@
 set -e -u
 
 cd /vagrant
-bundle install
+RACK_ENV="production"; export RACK_ENV
+bundle install --without development:test --path vendor/bundle
