@@ -43,3 +43,7 @@ desc "Destroy the local VM and delete all files"
 task :destroy do
 	sh "vagrant destroy -f"
 end
+
+desc "Run all validations"
+task :pre_commit => [:test, :boot, :acceptance] do
+end
