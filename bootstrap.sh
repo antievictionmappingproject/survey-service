@@ -1,6 +1,16 @@
 #! /bin/bash
 set -e -u
 
-cd /vagrant
-RACK_ENV="production"; export RACK_ENV
-bundle install --without development:test --path vendor/bundle
+cp -r /vagrant temp
+cd temp
+
+echo 'Running in test mode'
+RACK_ENV="test"; export RACK_ENV
+
+bundle install --without development --path vendor/bundle
+
+echo 'Creating database'
+bundle exec rake db:create
+
+echo 'Running migrations'
+bundle exec rake db:migrate

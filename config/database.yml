@@ -3,6 +3,12 @@ development:
   database: db/surveys
   timeout: 5000
 
+test:
+    adapter: postgresql
+    database: surveys
+    username: vagrant
+    host: localhost
+
 production:
     adapter: postgresql
     database: app-dev
