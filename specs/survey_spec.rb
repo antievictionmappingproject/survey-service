@@ -10,7 +10,8 @@ survey_endpoint = 'http://localhost:4567/surveys/survey'
 describe 'survey service' do
 
 	it 'returns 404 when requested survey response does not exist' do
-		RestClient.get("#{survey_endpoint}/blee") { |response, request, result| 
+		id = SecureRandom.uuid
+		RestClient.get("#{survey_endpoint}/#{id}") { |response, request, result| 
 			expect(response.code).to eq(404)
 		}
 	end
@@ -32,6 +33,8 @@ describe 'survey service' do
 			state,
 			zip_code)
 
+		id = "undefined"
+
 		RestClient.post(surveys_endpoint, survey_request.to_json, :content_type => :json, :accept => :json) { |response, request, result| 
 			expect(response.code).to eq(200)
 			survey_response = SurveyResponseRepresentation.json_create(JSON.parse(response.body))
@@ -43,14 +46,14 @@ describe 'survey service' do
 			expect(survey_response.city).to eq(city)
 			expect(survey_response.state).to eq(state)
 			expect(survey_response.zip_code).to eq(zip_code)
+
+			id = survey_response.id
 		}
 
-
-		# response = RestClient.get "#{survey_endpoint}/blee"
-		# expect(response.code).to eq(200)
-
-		# survey = Survey.json_create(JSON.parse(response.body))
-		# expect(survey).to eq(expected_survey)
+		RestClient.get("#{survey_endpoint}/#{id}") { |response, request, result| 
+			expect(response.code).to eq(200)
+			expect(response).to eq(survey_response)
+		}
 	end
 
 	# it 'serves json representation of a survey' do
