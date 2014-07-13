@@ -14,3 +14,6 @@ bundle exec rake db:create
 
 echo 'Running migrations'
 bundle exec rake db:migrate
+
+echo 'Starting app'
+bundle exec ruby service.rb -o 0.0.0.0
