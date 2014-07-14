@@ -5,6 +5,17 @@ survey service
 
 Micro service for the anti eviction mapping project's survey data.
 
+## System Requirements
+
+1. VirtualBox
+2. Vagrant
+
+## Setup
+
+```
+./go deploy
+```
+
 ## Usage
 
 ```

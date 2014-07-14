@@ -34,9 +34,18 @@ task :acceptance do
 	sh "rspec --color specs/survey_spec.rb"
 end
 
-desc "Run a local VM"
+desc "Boot local virtual machine"
 task :boot do
-	sh "vagrant up"
+	sh "vagrant up --no-provision"
+end
+
+desc "Install service on the virtual machine"
+task :install do
+	sh "vagrant provision"
+end
+
+desc "Deploy the service to the virtual machine"
+task :deploy => [:boot, :install] do
 end
 
 desc "Destroy the local VM and delete all files"
