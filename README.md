@@ -12,23 +12,8 @@ Micro service for the anti eviction mapping project's survey data.
 
 ## Setup
 
-```
-./go deploy
-```
+Run ```./go deploy``` to get the serivce up and running and ```./go pre_commit``` to validate your changes before pushing to git.
 
 ## Usage
 
-```
-./go migrate
-```
-Create database and run migrations
-
-```
-./go start
-```
-Run the survey service locally
-
-```
-./go test
-```
-Run rspec tests for the survey service
+Run ```./go``` to see a list of all available commands
