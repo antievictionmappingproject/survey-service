@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 set -e -u
 
 REQUIRED_RUBY=ruby-2.0.0-p247
@@ -8,4 +8,23 @@ REQUIRED_RUBY=ruby-2.0.0-p247
 rvm $REQUIRED_RUBY do which -s bundler || rvm $REQUIRED_RUBY do gem install -q --no-ri --no-rdoc bundler
 rvm $REQUIRED_RUBY do bundle install --quiet --path vendor/isolated_gems
 
-time bundle exec rake $1
+function run() {
+	bundle exec rake $* 2>&1
+}
+
+function task_list() {
+		run -T | sed 's/rake/.\/go/'
+		exit 0
+}
+
+case "$@" in
+	tasks|help|-T|"")
+		task_list
+		;;
+
+	*) 
+		;;
+
+esac
+
+run $@

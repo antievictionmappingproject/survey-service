@@ -1,8 +1,8 @@
 require 'sinatra/activerecord/rake'
 require './app'
 
-desc "Run migration scripts"
-task :migrate => 'db:migrate' do
+task :default do
+	rake -T
 end
 
 desc "Run unit tests"
