@@ -1,10 +1,6 @@
 require 'sinatra/activerecord/rake'
 require './app'
 
-task :default do
-	rake -T
-end
-
 desc "Run unit tests"
 task :test do
 	sh "rspec --color spec"
