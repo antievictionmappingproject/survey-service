@@ -71,6 +71,7 @@ DEPENDENCIES
   rake
   rest_client
   rspec
+  rspec-mocks
   sinatra
   sinatra-activerecord
   sqlite3

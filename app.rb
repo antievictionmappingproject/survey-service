@@ -40,10 +40,10 @@ get '/surveys/survey/:id' do |id|
 		halt 404, 'this is not the survey you are looking for'
 	end
 
-	@survey = SurveyResponse.find(id)
+	@survey = SurveyResponse.find_by id: id
 
 	content_type :json
-	survey.to_json
+	@survey.to_json
 end
 
 post '/surveys' do
