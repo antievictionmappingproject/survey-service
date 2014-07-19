@@ -17,6 +17,10 @@ get '/' do
     erb :root_resource
 end
 
+get '/surveys' do
+	content_type :json
+end
+
 post '/submit' do
     @model = Model.new(params[:model])
     if @model.save
