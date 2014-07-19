@@ -41,8 +41,8 @@ describe 'Survey Service' do
   it 'return status code 200 (successful) for GET on survey that exists' do
     id = SecureRandom.uuid    
     survey = SurveyResponse.new()
-   
-    SurveyResponse.stub(:find_by).with(id: id).and_return(survey)
+
+    allow(SurveyResponse).to receive(:find_by).with(id: id).and_return(survey)
    
     get "/surveys/survey/#{id}"
     expect(last_response).to be_ok
