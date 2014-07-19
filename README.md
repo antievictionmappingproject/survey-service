@@ -21,3 +21,4 @@ Run ```./go``` to see a list of all available commands
 ## Links
 
 1. [Go Script](http://blog.thepete.net/blog/2014/03/28/_-attributes-of-an-amazing-dev-toolchain/)
+2. [HAL - Hypertext Application Language](http://stateless.co/hal_specification.html)

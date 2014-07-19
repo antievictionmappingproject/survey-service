@@ -3,7 +3,7 @@ require './app'
 
 desc "Run unit tests"
 task :test do
-	sh "rspec --color spec"
+	sh "rspec --color spec --format documentation"
 end
 
 desc "Boot local virtual machine"

@@ -8,7 +8,8 @@ require './models/model'
 require './models/survey_response'
 
 get '/' do 
-    erb :index
+	content_type :json
+    erb :root_resource
 end
 
 post '/submit' do
