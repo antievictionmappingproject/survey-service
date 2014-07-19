@@ -5,10 +5,15 @@ require './config/environments'
 require './representations/survey_request_representation'
 require './representations/survey_response_representation'
 require './models/model'
-require './models/survey_response'
+require './models/survey_response' 
+
+def base_url
+	@base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+end
 
 get '/' do 
 	content_type :json
+	@base_url = base_url
     erb :root_resource
 end
 

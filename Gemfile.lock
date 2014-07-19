@@ -65,6 +65,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activeuuid
+  json
   pg
   rack-test
   rake
