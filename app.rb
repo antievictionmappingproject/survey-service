@@ -35,7 +35,7 @@ get '/models' do
     erb :models
 end
 
-get '/surveys/survey/:id' do |id|
+get '/surveys/:id' do |id|
 	if (SurveyResponse.find_by id: id).nil?
 		halt 404, 'this is not the survey you are looking for'
 	end
