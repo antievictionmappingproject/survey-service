@@ -3,7 +3,7 @@ require './app'
 
 desc "Run unit tests"
 task :test do
-	sh "rspec --color spec --format documentation"
+	sh "rspec --tag ~acceptance --color spec --format documentation"
 end
 
 desc "Boot local virtual machine"
@@ -27,7 +27,7 @@ end
 
 desc "Run acceptance tests against the deployed service"
 task :acceptance do
-	sh "rspec --color specs/survey_spec.rb"
+	sh "rspec --tag acceptance --color spec --format documentation"
 end
 
 desc "Run all validations"
