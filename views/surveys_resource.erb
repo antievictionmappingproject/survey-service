@@ -1,0 +1,10 @@
+{
+	"_links": {
+        "self": { "href": "<%= @base_url %>/surveys" },
+        "items": [
+        	<% @surveys.each do |survey| %>
+        	{ "href": "<%= @base_url %>/surveys/<%= survey.id%>" }
+  		    <% end %>
+  		]
+    }
+}

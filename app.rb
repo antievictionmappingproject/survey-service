@@ -12,13 +12,17 @@ def base_url
 end
 
 get '/' do 
-	content_type :json
 	@base_url = base_url
+	content_type :json
     erb :root_resource
 end
 
 get '/surveys' do
+	@base_url = base_url
+	@surveys = SurveyResponse.all
+
 	content_type :json
+	erb :surveys_resource
 end
 
 post '/submit' do

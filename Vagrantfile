@@ -1,9 +1,12 @@
 VAGRANTFILE_API_VERSION = "2"
 
 $provision_script = <<SCRIPT
+export RACK_ENV='test'
 cp -r /vagrant /opt/survey-service
 cd /opt/survey-service
 bundle install --without development
+bundle exec rake db:create
+bundle exec rake db:migrate
 bundle exec rackup -D -p 4567 -o 0.0.0.0 -E test config.ru
 SCRIPT
 
