@@ -1,12 +1,17 @@
 require './models/self_link' 
 
 class SurveysResponseRepresentation
+
+	def initialize(base_url)
+      @base_url = base_url
+   	end
+
 	def self
-		SelfLink.new()
+		SelfLink.new(@base_url)
 	end
 
 	def next
-		SelfLink.new()
+		SelfLink.new(@base_url)
 	end
 
 	def surveys

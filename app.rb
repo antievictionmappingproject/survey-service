@@ -25,7 +25,7 @@ end
 get '/surveys' do
 	@base_url = base_url
 	@surveys = SurveyResponse.all
-	@representation = SurveysResponseRepresentation.new()
+	@representation = SurveysResponseRepresentation.new(@base_url)
 
 	content_type :json
 	rabl :surveys
