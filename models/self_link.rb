@@ -1,4 +1,4 @@
-class Link
+class SelfLink
 	def href
 		'http://example.org/surveys'
 	end
