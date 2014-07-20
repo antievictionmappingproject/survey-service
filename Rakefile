@@ -16,6 +16,10 @@ task :stop do
 	sh "if [ -f tmp/pids/private_pub.pid ]; then kill -9 `cat tmp/pids/private_pub.pid`; fi"
 end
 
+desc "Restart the service"
+task :restart => [:stop, :start] do
+end
+
 desc "Boot local virtual machine"
 task :boot do
 	sh "vagrant up --no-provision"
