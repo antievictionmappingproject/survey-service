@@ -31,12 +31,30 @@ describe 'Survey Service' do
     allow(SurveyResponse).to receive(:all).and_return(surveys)
 
     get '/surveys'
-    
+
     expect(last_response).to be_ok 
     expect(last_response.content_type).to eq('application/json')
 
     hash = JSON.parse(last_response.body)
     expect(hash['_links']['self']['href']).to eq("#{base_url}/surveys")
+  end
+
+  it 'return status code 200 (ok) for GET on surveys resource when surveys exist' do
+    one = SurveyResponse.new()
+    one.id = SecureRandom.uuid
+    two = SurveyResponse.new()
+    two.id = SecureRandom.uuid
+    surveys = [one, two]
+    allow(SurveyResponse).to receive(:all).and_return(surveys)
+
+    get '/surveys'
+   
+    expect(last_response).to be_ok 
+    expect(last_response.content_type).to eq('application/json')
+
+    hash = JSON.parse(last_response.body)
+    expect(hash['_embedded']['surveys'][0]['_links']['self']['href']).to eq("#{base_url}/surveys/#{one.id}")
+    expect(hash['_embedded']['surveys'][1]['_links']['self']['href']).to eq("#{base_url}/surveys/#{two.id}")
   end
 
   it 'return status code 404 (not found) for GET on survey that does not exist' do

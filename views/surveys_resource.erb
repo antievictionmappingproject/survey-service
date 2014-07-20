@@ -3,10 +3,28 @@
         "self": { "href": "<%= @representation.self %>" }
     },
     "_embedded": {
-    	"surveys": [{
-			"_links": {
-				"self": { "href": "<%= @representation.surveys[0].self %>" }
-			}
-        }]
+    	"surveys": [
+        	<% 
+            all = @representation.surveys
+            last = all.pop
+            all.each do |survey| 
+            %>
+    		{
+				"_links": {
+					"self": { "href": "<%= survey.self %>" }
+				}
+			},
+			<% 
+            end 
+
+            unless last.nil?
+            %>
+            {
+                "_links": {
+                    "self": { "href": "<%= last.self %>" }
+                }
+            }
+            <% end %>
+        ]
     }
 }

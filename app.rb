@@ -20,7 +20,8 @@ end
 
 get '/surveys' do
 	@surveys = SurveyResponse.all
-	survey_representations = [SurveyResponseRepresentation.new(base_url)]
+
+	survey_representations = @surveys.map { |survey| SurveyResponseRepresentation.new(base_url, survey.id) }
 	@representation = SurveysResponseRepresentation.new(base_url, survey_representations)
 
 	content_type :json
