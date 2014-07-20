@@ -1,5 +1,12 @@
 {
 	"_links": {
         "self": { "href": "<%= @representation.self %>" }
+    },
+    "_embedded": {
+    	"surveys": [{
+			"_links": {
+				"self": { "href": "<%= @representation.surveys[0].self %>" }
+			}
+        }]
     }
 }

@@ -7,7 +7,6 @@ require './representations/survey_response_representation'
 require './representations/surveys_response_representation'
 require './models/model'
 require './models/survey_response'
-require './models/self_link' 
 
 def base_url
 	@base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
@@ -21,7 +20,8 @@ end
 
 get '/surveys' do
 	@surveys = SurveyResponse.all
-	@representation = SurveysResponseRepresentation.new(base_url)
+	survey_representations = [SurveyResponseRepresentation.new(base_url)]
+	@representation = SurveysResponseRepresentation.new(base_url, survey_representations)
 
 	content_type :json
 	erb :surveys_resource

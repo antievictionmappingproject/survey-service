@@ -1,12 +1,6 @@
-require './models/self_link'
-
-class SurveysResponseRepresentation < Struct.new(:base_url)
+class SurveysResponseRepresentation < Struct.new(:base_url, :surveys)
 
 	def self
 		"#{base_url}/surveys"
-	end
-
-	def surveys
-		[SurveysResponseRepresentation.new()]
 	end
 end
