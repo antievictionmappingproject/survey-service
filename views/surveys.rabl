@@ -1,2 +1,9 @@
-collection @links, :root => "_links", :object_root => "self"
-attributes :href
+object @representation => :_links
+
+child @representation.self, :root => "self" do
+	attributes :href
+end
+
+child @representation.next, :root => "next" do
+	attributes :href
+end

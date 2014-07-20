@@ -5,9 +5,10 @@ require 'rabl'
 require './config/environments'
 require './representations/survey_request_representation'
 require './representations/survey_response_representation'
+require './representations/surveys_response_representation'
 require './models/model'
 require './models/survey_response'
-require './models/link' 
+require './models/self_link' 
 
 Rabl.register!
 
@@ -24,8 +25,7 @@ end
 get '/surveys' do
 	@base_url = base_url
 	@surveys = SurveyResponse.all
-	link = Link.new()
-	@links = [link]
+	@representation = SurveysResponseRepresentation.new()
 
 	content_type :json
 	rabl :surveys

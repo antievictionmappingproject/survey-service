@@ -19,33 +19,4 @@ class SurveyResponseRepresentation
 		@state = state
 		@zip_code = zip_code
 	end
-
-	def to_json(*a)
-		{
-		  "json_class"   => self.class.name,
-		  "data"         => 
-		  {
-		  	"id" => @id, 
-		  	"first_name" => @first_name,
-		  	"last_name" => @last_name,
-		  	"address_line_1" => @address_line_1,
-		  	"address_line_2" => @address_line_2,
-		  	"city" => @city,
-		  	"state" => @state,
-		  	"zip_code" => @zip_code
-		  }
-		}.to_json(*a)
-	end
-
-	def self.json_create(o)
-		new(o["data"]["id"], 
-			o["data"]["first_name"],
-			o["data"]["last_name"],
-			o["data"]["address_line_1"],
-			o["data"]["address_line_2"],
-			o["data"]["city"],
-			o["data"]["state"],
-			o["data"]["zip_code"])
-	end
-	
 end
