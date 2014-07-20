@@ -1,17 +1,9 @@
-require './models/self_link' 
+require './models/self_link'
 
-class SurveysResponseRepresentation
-
-	def initialize(base_url)
-      @base_url = base_url
-   	end
+class SurveysResponseRepresentation < Struct.new(:base_url)
 
 	def self
-		SelfLink.new(@base_url)
-	end
-
-	def next
-		SelfLink.new(@base_url)
+		"#{base_url}/surveys"
 	end
 
 	def surveys

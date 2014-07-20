@@ -7,8 +7,6 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'activeuuid'
 gem 'rest_client'
-gem 'rabl'
-gem 'oj'
 
 group :development do
 	gem 'sqlite3'

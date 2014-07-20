@@ -34,13 +34,14 @@ describe 'Survey Service' do
     allow(SurveyResponse).to receive(:all).and_return(surveys)
 
     get '/surveys'
-    puts last_response.body
+    # puts last_response.body
     
     expect(last_response).to be_ok 
     expect(last_response.content_type).to eq('application/json')
 
     hash = JSON.parse(last_response.body)
     expect(hash['_links']['self']['href']).to eq("#{base_url}/surveys")
+    # expect(hash['_embedded']['surveys'][0]['_links']['self']).to eq("#{base_url}/surveys/#{survey.id}")
   end
 
   it 'return status code 404 (not found) for GET on survey that does not exist' do
