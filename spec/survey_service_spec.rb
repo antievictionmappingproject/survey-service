@@ -38,8 +38,7 @@ describe 'Survey Service' do
     expect(last_response.content_type).to eq('application/json')
 
     hash = JSON.parse(last_response.body)
-    expect(hash['_links']['self']['href']).to eq("#{base_url}/surveys")
-    expect(hash['_links']['items'][0]['href']).to eq("#{base_url}/surveys/#{survey.id}")
+    expect(hash['_links'][0]['self']['href']).to eq("#{base_url}/surveys")
   end
 
   it 'return status code 404 (not found) for GET on survey that does not exist' do

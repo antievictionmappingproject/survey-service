@@ -24,7 +24,10 @@ GEM
     json (1.8.1)
     minitest (5.3.5)
     netrc (0.7.7)
+    oj (2.9.9)
     pg (0.17.1)
+    rabl (0.10.1)
+      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -66,7 +69,9 @@ DEPENDENCIES
   activerecord
   activeuuid
   json
+  oj
   pg
+  rabl
   rack-test
   rake
   rest_client
