@@ -4,19 +4,25 @@ require './representations/survey_request_representation'
 require './representations/survey_response_representation'
 require 'json'
 
-surveys_endpoint = 'http://localhost:4567/surveys'
-survey_endpoint = 'http://localhost:4567/surveys/survey'
+def surveys_endpoint
+  value = 'http://localhost:4567/surveys'
+  if ENV['RACK_ENV'] = 'production'
+    value = 'http://surveys-aemp.herokuapp.com/surveys'
+  end
+
+  value
+end
 
 describe 'survey service' do
 
   it 'returns 404 when requested survey response does not exist', :acceptance do
     id = SecureRandom.uuid
-    RestClient.get("#{survey_endpoint}/#{id}") { |response, request, result| 
+    RestClient.get("#{surveys_endpoint}/#{id}") { |response, request, result| 
       expect(response.code).to eq(404)
     }
   end
 
-  it 'saves a representation of a survey response', :acceptance do
+  it 'returns 200 and saves a representation of a survey response', :acceptance do
     first_name = 'Robert'
     last_name = 'Smith'
     address_line_1 = '1234 Test Street'
