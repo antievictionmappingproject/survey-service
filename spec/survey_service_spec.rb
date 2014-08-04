@@ -76,4 +76,24 @@ describe 'Survey Service' do
     expect(last_response).to be_ok
     expect(last_response.content_type).to eq('application/json')
   end
+
+  it 'return status code 200 (ok) for POST on surveys resource' do
+    request = SurveyRequestRepresentation.new('first', 'last', 'line 1', 'line 2', 'city', 'state', 'zip')
+
+    SurveyResponse.any_instance.stub(:save).and_return(true)
+  
+    post '/surveys', request.to_json, "CONTENT_TYPE" => "application/json"  
+    
+    expect(last_response).to be_ok
+    expect(last_response.content_type).to eq('application/json')
+
+    hash = JSON.parse(last_response.body)
+    expect(hash['first_name']).to eq('first')
+    expect(hash['last_name']).to eq('last')
+    expect(hash['address_line_1']).to eq('line 1')
+    expect(hash['address_line_2']).to eq('line 2')
+    expect(hash['address_city']).to eq('city')
+    expect(hash['address_state']).to eq('state')
+    expect(hash['address_zip_code']).to eq('zip')
+  end
 end

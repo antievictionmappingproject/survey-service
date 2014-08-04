@@ -54,22 +54,29 @@ get '/surveys/:id' do |id|
 end
 
 post '/surveys' do
+	survey_request = SurveyRequestRepresentation.from_json(request.body.read)
+	
+	survey = SurveyResponse.new
+	survey.id = SecureRandom.uuid
+	survey.first_name = survey_request.first_name
+	survey.last_name = survey_request.last_name
+	survey.street_1 = survey_request.address_line_1
+	survey.street_2 = survey_request.address_line_2
+	survey.city = survey_request.address_city
+	survey.state = survey_request.address_state
+	survey.zip_code = survey_request.address_zip_code
+	survey.save
+
+	survey_response = SurveyResponseRepresentation.new(base_url,
+		SecureRandom.uuid, 
+		survey.first_name, 
+		survey.last_name, 
+		survey.street_1, 
+		survey.street_2,
+		survey.city, 
+		survey.state, 
+		survey.zip_code)
+
 	content_type :json
-
-	survey_request = SurveyRequestRepresentation.json_create(JSON.parse(request.body.read))
-	survey_response = SurveyResponseRepresentation.new(SecureRandom.uuid, 
-		survey_request.first_name, 
-		survey_request.last_name, 
-		survey_request.address_line_1, 
-		survey_request.address_line_2,
-		survey_request.city, 
-		survey_request.state, 
-		survey_request.zip_code)
-
-	#survey = Survey.new('blah', '543 test street')
-	# @response = SurveyResponse.new
-	# @response.address_1 = '543 test street'
-	# @response.save
-
 	survey_response.to_json
 end
