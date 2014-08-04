@@ -6,8 +6,8 @@ require 'json'
 
 def surveys_endpoint
   value = 'http://localhost:4567/surveys'
-  if ENV['RACK_ENV'] = 'production'
-    value = 'http://surveys-aemp.herokuapp.com/surveys'
+  if ENV['RACK_ENV'] == 'production'
+     value = 'http://surveys-aemp.herokuapp.com/surveys'
   end
 
   value
@@ -15,14 +15,7 @@ end
 
 describe 'survey service' do
 
-  it 'returns 404 when requested survey response does not exist', :acceptance do
-    id = SecureRandom.uuid
-    RestClient.get("#{surveys_endpoint}/#{id}") { |response, request, result| 
-      expect(response.code).to eq(404)
-    }
-  end
-
-  it 'returns 200 and saves a representation of a survey response', :acceptance do
+  it 'saves a representation of a survey response', :acceptance do
     first_name = 'Robert'
     last_name = 'Smith'
     address_line_1 = '1234 Test Street'
@@ -39,25 +32,36 @@ describe 'survey service' do
       state,
       zip_code)
 
-    id = "undefined"
+    survey_link = ''
 
     RestClient.post(surveys_endpoint, survey_request.to_json, :content_type => :json, :accept => :json) { |response, request, result| 
       expect(response.code).to eq(200)
-      survey_response = SurveyResponseRepresentation.from_json(response.body)
 
-      expect(survey_response.first_name).to eq(first_name)
-      expect(survey_response.last_name).to eq(last_name)
-      expect(survey_response.address_line_1).to eq(address_line_1)
-      expect(survey_response.address_line_2).to eq(address_line_2)
-      expect(survey_response.address_city).to eq(city)
-      expect(survey_response.address_state).to eq(state)
-      expect(survey_response.address_zip_code).to eq(zip_code)
+      hash = JSON.parse(response.body)
+      survey_link = hash['_links']['self']['href']
 
-      id = survey_response.id
+      expect(hash['first_name']).to eq(first_name)
+      expect(hash['last_name']).to eq(last_name)
+      expect(hash['address_line_1']).to eq(address_line_1)
+      expect(hash['address_line_2']).to eq(address_line_2)
+      expect(hash['address_city']).to eq(city)
+      expect(hash['address_state']).to eq(state)
+      expect(hash['address_zip_code']).to eq(zip_code)
     }
 
-    RestClient.get("#{surveys_endpoint}/#{id}") { |response, request, result| 
-      expect(response.code).to eq(200)
+    RestClient.get(survey_link) { |response, request, result| 
+       expect(response.code).to eq(200)
+
+       hash = JSON.parse(response.body)
+      survey_link = hash['_links']['self']['href']
+
+      expect(hash['first_name']).to eq(first_name)
+      expect(hash['last_name']).to eq(last_name)
+      expect(hash['address_line_1']).to eq(address_line_1)
+      expect(hash['address_line_2']).to eq(address_line_2)
+      expect(hash['address_city']).to eq(city)
+      expect(hash['address_state']).to eq(state)
+      expect(hash['address_zip_code']).to eq(zip_code)
     }
   end
 end

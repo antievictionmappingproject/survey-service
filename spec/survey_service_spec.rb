@@ -69,12 +69,30 @@ describe 'Survey Service' do
   it 'return status code 200 (ok) for GET on survey that exists' do
     id = SecureRandom.uuid    
     survey = SurveyResponse.new()
+    survey.id = id
+    survey.first_name = 'first'
+    survey.last_name = 'last'
+    survey.street_1 = 'line 1'
+    survey.street_2 = 'line 2'
+    survey.city = 'city'
+    survey.state = 'state'
+    survey.zip_code = 'zip'
 
     allow(SurveyResponse).to receive(:find_by).with(id: id).and_return(survey)
    
     get "/surveys/#{id}"
     expect(last_response).to be_ok
     expect(last_response.content_type).to eq('application/json')
+
+    hash = JSON.parse(last_response.body)
+    expect(hash['_links']['self']['href']).to eq("#{base_url}/surveys/#{id}")
+    expect(hash['first_name']).to eq('first')
+    expect(hash['last_name']).to eq('last')
+    expect(hash['address_line_1']).to eq('line 1')
+    expect(hash['address_line_2']).to eq('line 2')
+    expect(hash['address_city']).to eq('city')
+    expect(hash['address_state']).to eq('state')
+    expect(hash['address_zip_code']).to eq('zip')
   end
 
   it 'return status code 200 (ok) for POST on surveys resource' do

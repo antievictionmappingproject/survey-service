@@ -21,7 +21,7 @@ end
 get '/surveys' do
 	@surveys = SurveyResponse.all
 
-	survey_representations = @surveys.map { |survey| SurveyResponseRepresentation.new(base_url, survey.id) }
+	survey_representations = @surveys.map { |survey| SurveyResponseRepresentation.new(base_url, survey) }
 	@representation = SurveysResponseRepresentation.new(base_url, survey_representations)
 
 	content_type :json
@@ -47,10 +47,11 @@ get '/surveys/:id' do |id|
 		halt 404, 'this is not the survey you are looking for'
 	end
 
-	@survey = SurveyResponse.find_by id: id
+	survey = SurveyResponse.find_by id: id
+	@representation = SurveyResponseRepresentation.new(base_url, survey)
 
-	content_type :json
-	@survey.to_json
+	content_type :json	
+	erb :survey_resource
 end
 
 post '/surveys' do
@@ -67,16 +68,8 @@ post '/surveys' do
 	survey.zip_code = survey_request.address_zip_code
 	survey.save
 
-	survey_response = SurveyResponseRepresentation.new(base_url,
-		survey.id, 
-		survey.first_name, 
-		survey.last_name, 
-		survey.street_1, 
-		survey.street_2,
-		survey.city, 
-		survey.state, 
-		survey.zip_code)
+	@representation = SurveyResponseRepresentation.new(base_url, survey)
 
 	content_type :json
-	survey_response.to_json
+	erb :survey_resource
 end

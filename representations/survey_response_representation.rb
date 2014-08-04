@@ -1,14 +1,45 @@
 require 'json'
 
-class SurveyResponseRepresentation < Struct.new(:base_url, :id, :first_name, :last_name, :address_line_1, :address_line_2, :address_city, :address_state, :address_zip_code)
+class SurveyResponseRepresentation < Struct.new(:base_url, :survey)
 
 	def self
 		"#{base_url}/surveys/#{id}"
 	end
 
+	def id
+		survey.id
+	end
+
+	def first_name
+		survey.first_name
+	end 
+
+	def last_name
+		survey.last_name
+	end
+
+	def address_line_1
+		survey.street_1
+	end
+
+	def address_line_2
+		survey.street_2
+	end
+
+	def address_city
+		survey.city
+	end
+
+	def address_state
+		survey.state
+	end
+
+	def address_zip_code
+		survey.zip_code
+	end
+
 	def to_json(*a)
 		{
-			"base_url" => base_url,
 			"id" => id,
 			"first_name" => first_name,
 			"last_name" => last_name,
@@ -22,7 +53,7 @@ class SurveyResponseRepresentation < Struct.new(:base_url, :id, :first_name, :la
 
 	def self.from_json(json)
 		hash = JSON.parse(json)
-		new(hash['base_url'],
+		new('',
 			hash['id'],
 			hash['first_name'],
 			hash['last_name'],
