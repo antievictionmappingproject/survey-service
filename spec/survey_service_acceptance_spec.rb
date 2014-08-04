@@ -16,9 +16,6 @@ end
 describe 'survey service' do
 
   it 'saves a representation of a survey response', :acceptance do
-    puts ENV['RACK_ENV']
-    puts surveys_endpoint
-
     first_name = 'Robert'
     last_name = 'Smith'
     address_line_1 = '1234 Test Street'
