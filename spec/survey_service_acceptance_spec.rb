@@ -6,7 +6,7 @@ require 'json'
 
 def surveys_endpoint
   value = 'http://localhost:4567/surveys'
-  if ENV['RACK_ENV'] == 'production'
+  if ENV['TEST_ENV'] == 'production'
      value = 'http://surveys-aemp.herokuapp.com/surveys'
   end
 
