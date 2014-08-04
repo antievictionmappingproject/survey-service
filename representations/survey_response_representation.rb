@@ -8,6 +8,8 @@ class SurveyResponseRepresentation < Struct.new(:base_url, :id, :first_name, :la
 
 	def to_json(*a)
 		{
+			"base_url" => base_url,
+			"id" => id,
 			"first_name" => first_name,
 			"last_name" => last_name,
 			"address_line_1" => address_line_1,
@@ -20,7 +22,9 @@ class SurveyResponseRepresentation < Struct.new(:base_url, :id, :first_name, :la
 
 	def self.from_json(json)
 		hash = JSON.parse(json)
-		new(hash['first_name'],
+		new(hash['base_url'],
+			hash['id'],
+			hash['first_name'],
 			hash['last_name'],
 			hash['address_line_1'],
 			hash['address_line_2'],

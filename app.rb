@@ -68,7 +68,7 @@ post '/surveys' do
 	survey.save
 
 	survey_response = SurveyResponseRepresentation.new(base_url,
-		SecureRandom.uuid, 
+		survey.id, 
 		survey.first_name, 
 		survey.last_name, 
 		survey.street_1, 
